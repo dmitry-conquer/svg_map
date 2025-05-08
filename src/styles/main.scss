@@ -1,0 +1,16 @@
+@use "reset";
+@use "fonts";
+@use "variables";
+@use "helpers" as *;
+
+@import "components/svg-map";
+
+
+.marker {
+  color: red;
+  position: relative;
+  z-index: 10;
+}
+.container {
+  max-width: rem(1200);
+}
