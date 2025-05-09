@@ -98,4 +98,10 @@
 .map-marker {
   width: rem(24);
   height: rem(24);
+  transition: all 0.3s ease;
+  @include small {
+    width: rem(32);
+    height: rem(32);
+  }
+
 }

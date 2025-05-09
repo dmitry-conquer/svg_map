@@ -7,6 +7,7 @@ type TypeTabsState = {
 };
 
 type Marker = {
+  id?: number;
   x: number;
   y: number;
   content: string;
