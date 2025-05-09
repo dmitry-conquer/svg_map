@@ -1,5 +1,10 @@
 @use "../helpers" as *;
 
+.wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
 .map {
   padding-block: rem(300);
   &__container {
@@ -10,6 +15,9 @@
 }
 
 .map-popup {
+  width: 100%;
+  max-width: max-content;
+  padding: fluid(12, 24);
   position: absolute;
   z-index: 1000;
   border-radius: rem(8);
@@ -18,26 +26,76 @@
     0px 1px 4px 0px rgba(12, 12, 13, 0.05),
     0px 1px 4px 0px rgba(12, 12, 13, 0.1);
   font-family: Manrope;
-  font-size: rem(18);
+  font-size: fluid(16, 22);
   font-weight: 500;
   line-height: 1.2;
   color: #fff;
+
+  @include x-small {
+    display: none !important;
+  }
+
+  &.move-left {
+    &::before {
+      left: unset;
+      right: 0;
+      transform: rotate(180deg) translateX(-100%);
+    }
+  }
+  &.move-bottom {
+    &::before {
+      left: unset;
+      right: 50%;
+      top: unset;
+      bottom: 100%;
+      transform: rotate(90deg);
+    }
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: rem(8);
+    left: 0;
+    width: 0;
+    height: 0;
+    transform: translateX(-100%);
+    border-top: rem(7) solid transparent;
+    border-bottom: rem(7) solid transparent;
+    border-right: rem(12) solid #007bff;
+  }
+
   h2 {
-    font-size: rem(22);
+    font-size: fluid(16, 22);
     font-weight: 600;
     line-height: 1.4;
     text-transform: uppercase;
+    margin-bottom: fluid(8, 16);
   }
   h3 {
-    font-size: rem(22);
+    font-size: fluid(16, 22);
     font-weight: 600;
     line-height: 1.4;
+    margin-bottom: rem(4);
   }
   ul {
+    padding-left: fluid(14, 20);
     li {
+      list-style-type: disc;
+      &::marker {
+        font-size: fluid(10, 14);
+      }
+      &:not(:last-child) {
+        margin-bottom: fluid(12, 16);
+      }
       p {
         color: rgba(255, 255, 255, 0.8);
+        font-size: fluid(14, 18);
       }
     }
   }
+}
+.map-marker {
+  width: rem(24);
+  height: rem(24);
 }

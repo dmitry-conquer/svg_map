@@ -7,9 +7,21 @@ document.addEventListener("DOMContentLoaded", () => {
       x: 50,
       y: 50,
       content: `
-      <h2>Адреса 1</h2>
-      <p>Город: Київ</p>
-      <p>Улица: Гарматна</p>
+      <h2>COLORADO</h2>
+      <ul>
+        <li>
+          <h3>Denver</h3>
+          <p>(Michael Kieffer and Lainey Kieffer)</p>
+        </li>
+         <li>
+          <h3>Breckenridge</h3>
+          <p>(Michael Kieffer and Lainey Kieffer)</p>
+        </li>
+        <li>
+          <h3>Vail</h3>
+          <p>(Michael Kieffer and Lainey Kieffer)</p>
+        </li>
+      </ul>
       `,
       imageSrc: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
     },

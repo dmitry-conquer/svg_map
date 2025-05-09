@@ -5,12 +5,6 @@
 
 @import "components/svg-map";
 
-
-.marker {
-  color: red;
-  position: relative;
-  z-index: 10;
-}
-.container {
-  max-width: rem(1200);
+body {
+  font-family: "Manrope", sans-serif;
 }
