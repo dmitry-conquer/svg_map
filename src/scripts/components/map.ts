@@ -11,17 +11,15 @@ export default class Map {
   private rootElement: HTMLElement | null;
   private mapElement: HTMLElement | null = null;
   private popupElement!: HTMLElement;
-  private areas: HTMLElement[] = [];
-  private markers: Marker[] = [];
+  private markersData: MarkerData[] = [];
   private activeMarker: SVGElement | null = null;
 
-  constructor(markers: Marker[]) {
+  constructor(markersData: MarkerData[]) {
     this.wrapper = document.querySelector(this.selectors.wrapper) as HTMLElement;
     this.rootElement = document.querySelector(this.selectors.root) as HTMLElement;
     this.mapElement = this.rootElement?.querySelector(this.selectors.map) as HTMLElement;
     this.popupElement = this.rootElement?.querySelector(this.selectors.popup) as HTMLElement;
-    this.areas = Array.from(this.rootElement?.querySelectorAll(this.selectors.area) || []);
-    this.markers = markers;
+    this.markersData = markersData;
     this.initMap();
   }
 
@@ -47,7 +45,7 @@ export default class Map {
   }
 
   private renderMarkers(): void {
-    this.markers.forEach((markerData: Marker, index: number) => {
+    this.markersData.forEach((markerData: MarkerData, index: number) => {
       markerData.id = index;
       const markerElement = document.createElementNS("http://www.w3.org/2000/svg", "image");
       markerElement.setAttributeNS(null, "href", markerData.imageSrc);
@@ -123,17 +121,18 @@ export default class Map {
 
       if (markerEl) {
         const markerId = target.getAttribute("data-marker-id");
-        const markerData = this.markers.find((marker: Marker) => marker.id?.toString() === markerId);
+        const markerData = this.markersData.find((marker: MarkerData) => marker.id?.toString() === markerId);
         if (!markerData) return;
         this.activeMarker = target as SVGElement;
         this.showPopup(target as SVGElement, markerData.content, "left");
       }
 
       if (areaEl) {
-        const areaId = target.dataset.area;
-        const path = this.mapElement?.querySelector(`path[data-path="${areaId}"]`);
-        if (!path) return;
-        this.showPopup(path as SVGElement, "content", "center");
+        const id = target.dataset.areaButton;
+        const info = target.nextElementSibling?.innerHTML;
+        const path = this.mapElement?.querySelector(`path[data-area="${id}"]`);
+        if (!path || !info) return;
+        this.showPopup(path as SVGElement, info, "center");
       }
     });
   }

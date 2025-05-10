@@ -6,10 +6,15 @@ type TypeTabsState = {
   activeTabIndex: number;
 };
 
-type Marker = {
+type MarkerData = {
   id?: number;
   x: number;
   y: number;
   content: string;
   imageSrc: string;
+};
+
+type AreaData = {
+  id: string;
+  content: string;
 };
