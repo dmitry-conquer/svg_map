@@ -1,6 +1,6 @@
 import "../styles/main.scss";
-import Map from "./components/map";
 import AccordionCollection from "./components/accordion";
+import Map from "./components/map";
 
 document.addEventListener("DOMContentLoaded", () => {
   new AccordionCollection();

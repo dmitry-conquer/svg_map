@@ -2,10 +2,6 @@ type TypeAccordioState = {
   activeAccordionIndex: number;
 };
 
-type TypeTabsState = {
-  activeTabIndex: number;
-};
-
 type MarkerData = {
   id?: number;
   x: number;
