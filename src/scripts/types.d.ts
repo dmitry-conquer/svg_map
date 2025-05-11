@@ -12,9 +12,5 @@ type MarkerData = {
   y: number;
   content: string;
   imageSrc: string;
-};
-
-type AreaData = {
-  id: string;
-  content: string;
+  area: string;
 };

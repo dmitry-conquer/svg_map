@@ -72,7 +72,7 @@ class Accordion {
   }
 
   private onButtonClick(index: number) {
-    this.state.activeAccordionIndex = index;
+    this.state.activeAccordionIndex = this.state.activeAccordionIndex === index ? -1 : index;
   }
 }
 
