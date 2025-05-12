@@ -1,10 +1,3 @@
-@use "reset";
-@use "fonts";
-@use "variables";
+// @use "reset";/
 @use "helpers" as *;
-
-@import "components/svg-map";
-
-body {
-  font-family: "Manrope", sans-serif;
-}
+@use "components/svg-map";
