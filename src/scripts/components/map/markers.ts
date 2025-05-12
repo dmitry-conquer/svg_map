@@ -21,11 +21,10 @@ export default class Markers {
     markersData.forEach((markerData: MarkerData, index: number) => {
       markerData.id = index;
       const markerElement = document.createElementNS("http://www.w3.org/2000/svg", "image");
-      markerElement.setAttributeNS(null, "href", markerData.imageSrc);
-      markerElement.setAttribute("x", (markerData.x - 12).toString());
-      markerElement.setAttribute("y", (markerData.y - 12).toString());
+      markerElement.setAttributeNS(null, "href", markerData.image_src);
+      markerElement.setAttribute("x", (+markerData.x - 12).toString());
+      markerElement.setAttribute("y", (+markerData.y - 12).toString());
       markerElement.setAttribute("data-marker-id", markerData.id.toString());
-      markerElement.setAttribute("data-area-related", markerData.area);
       markerElement.classList.add(getClassName(this.selectors.marker));
       this.mapElement?.appendChild(markerElement);
     });

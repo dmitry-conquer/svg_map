@@ -8,6 +8,7 @@
 .map {
   background-color: #f2f5ff;
   padding: fluid(40, 60) 0 fluid(40, 140);
+
   &__container {
     max-width: rem(1500);
     padding: 0 rem(20);
@@ -45,6 +46,7 @@
     }
   }
   &__areas-item-button {
+    font-weight: 400 !important;
     cursor: auto;
     color: #000;
     font-family: Manrope;
@@ -90,6 +92,7 @@
     }
   }
   &__accordion-button {
+    border: none !important;
     width: 100%;
     padding: rem(16);
     transition: all 0.3s ease;
@@ -172,7 +175,7 @@
   box-shadow:
     0px 1px 4px 0px rgba(12, 12, 13, 0.05),
     0px 1px 4px 0px rgba(12, 12, 13, 0.1);
-  font-family: Manrope;
+  font-family: Manrope !important;
   font-size: fluid(16, 22);
   font-weight: 500;
   line-height: 1.2;
@@ -213,6 +216,7 @@
   }
 
   h2 {
+    font-family: Manrope;
     font-size: fluid(16, 22);
     font-weight: 600;
     line-height: 1.4;
@@ -220,12 +224,14 @@
     margin-bottom: fluid(8, 16);
   }
   h3 {
+    font-family: Manrope;
     font-size: fluid(16, 22);
     font-weight: 600;
     line-height: 1.4;
     margin-bottom: rem(4);
   }
   ul {
+    font-family: Manrope;
     padding-left: fluid(14, 20);
     li {
       list-style-type: disc;

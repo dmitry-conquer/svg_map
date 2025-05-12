@@ -110,7 +110,7 @@ export default class Map {
   private onMouseOver = (e: MouseEvent): void => {
     const target = e.target as HTMLElement;
     const areaButton = target.closest(this.selectors.areaButton);
-    if (areaButton) {
+    if (areaButton && !this.hightlightedArea) {
       const areaId = target.dataset.areaButton;
       if (!areaId) return;
       const areaPath = this.rootElement?.querySelector(`path[data-area="${areaId}"]`);

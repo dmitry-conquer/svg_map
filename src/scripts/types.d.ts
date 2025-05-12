@@ -7,6 +7,6 @@ type MarkerData = {
   x: number;
   y: number;
   content: string;
-  imageSrc: string;
+  image_src: string;
   area: string;
 };

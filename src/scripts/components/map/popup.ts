@@ -27,7 +27,6 @@ export default class Popup {
     this.popupElement.innerHTML = content;
     this.popupElement.style.display = "block";
     const rect = target.getBoundingClientRect();
-    console.log(rect);
     this.setPosition(rect);
   }
 
