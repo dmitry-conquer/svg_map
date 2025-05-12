@@ -25,6 +25,7 @@ export default class Markers {
       markerElement.setAttribute("x", (+markerData.x - 12).toString());
       markerElement.setAttribute("y", (+markerData.y - 12).toString());
       markerElement.setAttribute("data-marker-id", markerData.id.toString());
+      markerElement.setAttribute("data-related", markerData.related);
       markerElement.classList.add(getClassName(this.selectors.marker));
       this.mapElement?.appendChild(markerElement);
     });

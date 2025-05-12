@@ -1,8 +1,6 @@
-const rootSelector = "[data-js-accordion]";
-
 class Accordion {
   private readonly selectors: Record<string, string> = {
-    root: rootSelector,
+    root: "[data-js-accordion]",
     button: "[data-js-accordion-button]",
     content: "[data-js-accordion-content]",
   };
@@ -17,8 +15,8 @@ class Accordion {
   private buttonElements: NodeListOf<HTMLElement>;
   private state: TypeAccordioState;
 
-  constructor(rootElement: HTMLElement) {
-    this.rootElement = rootElement;
+  constructor() {
+    this.rootElement = document.querySelector(this.selectors.root) as HTMLElement;
     this.buttonElements = this.rootElement.querySelectorAll(this.selectors.button);
     this.state = this.getProxyState({
       activeAccordionIndex: [...this.buttonElements].findIndex(buttonElement =>
@@ -74,16 +72,10 @@ class Accordion {
   private onButtonClick(index: number) {
     this.state.activeAccordionIndex = this.state.activeAccordionIndex === index ? -1 : index;
   }
-}
 
-class AccordionCollection {
-  constructor() {
-    this.init();
-  }
-
-  private init(): void {
-    document.querySelectorAll(rootSelector).forEach(element => new Accordion(element as HTMLElement));
+  public open(index: number): void {
+    this.state.activeAccordionIndex = index;
   }
 }
 
-export default AccordionCollection;
+export default Accordion;

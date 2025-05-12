@@ -1,5 +1,6 @@
 import Popup from "./popup";
 import Markers from "./markers";
+import Accordion from "../accordion";
 
 export default class Map {
   private readonly selectors: Record<string, string> = {
@@ -10,6 +11,7 @@ export default class Map {
     popup: ".map-popup",
     areaButton: ".map-area",
     area: "[data-area]",
+    accrodionArea: "[data-accordion-area]",
   };
   private wrapper: HTMLElement | null = null;
   private rootElement: HTMLElement | null;
@@ -18,11 +20,14 @@ export default class Map {
   private activeMarker: SVGElement | null = null;
   private popup: Popup;
   private markers: Markers;
+  private accorion: Accordion;
   private areas: HTMLElement[] = [];
+  private accorionAreas: HTMLElement[] = [];
   private hightlightedArea: HTMLElement | null = null;
   private defaultPathFill: string = "#BEEDFF";
 
   constructor(markersData: MarkerData[]) {
+    this.accorion = new Accordion();
     this.popup = new Popup();
     this.markers = new Markers();
     this.wrapper = document.querySelector(this.selectors.wrapper) as HTMLElement;
@@ -30,6 +35,9 @@ export default class Map {
     this.mapElement = this.rootElement?.querySelector(this.selectors.map) as HTMLElement;
     this.markersData = markersData;
     this.areas = Array.from(this.rootElement?.querySelectorAll(this.selectors.area) as NodeListOf<HTMLElement>);
+    this.accorionAreas = Array.from(
+      this.rootElement?.querySelectorAll(this.selectors.accrodionArea) as NodeListOf<HTMLElement>
+    );
     this.initMap();
   }
 
@@ -90,9 +98,8 @@ export default class Map {
   private onClick = (e: MouseEvent): void => {
     const target = e.target as HTMLElement | SVGElement;
     const markerEl = target.closest(this.selectors.marker);
-    const areaEl = target.closest(this.selectors.areaButton);
 
-    if (!markerEl && !areaEl) {
+    if (!markerEl) {
       this.activeMarker = null;
       this.popup.hide();
       return;
@@ -100,10 +107,21 @@ export default class Map {
 
     if (markerEl) {
       const markerId = target.getAttribute("data-marker-id");
+      const related = target.getAttribute("data-related");
       const markerData = this.markersData.find((marker: MarkerData) => marker.id?.toString() === markerId);
       if (!markerData) return;
       this.activeMarker = target as SVGElement;
       this.popup.show(target as SVGElement, markerData.content);
+
+      const relatedArea = this.rootElement?.querySelector(`[data-accordion-area="${related}"]`);
+      if (!relatedArea) return;
+      const relatedAreaIndex = this.accorionAreas.findIndex(area => area === relatedArea);
+      this.accorion.open(relatedAreaIndex);
+
+      relatedArea.scrollIntoView({
+        block: "center",
+        behavior: "smooth",
+      });
     }
   };
 

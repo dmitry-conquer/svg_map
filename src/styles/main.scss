@@ -1,4 +1,7 @@
-@use 'reset';
+
 @use "helpers" as *;
 @use "components/svg-map";
 
+html {
+  scroll-behavior: smooth;
+}

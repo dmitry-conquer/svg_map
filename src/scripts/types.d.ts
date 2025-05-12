@@ -4,6 +4,7 @@ type TypeAccordioState = {
 
 type MarkerData = {
   id?: number;
+  related: string;
   x: number;
   y: number;
   content: string;
